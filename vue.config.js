@@ -5,14 +5,14 @@ function resolve(dir) {
 module.exports = {
   //关闭语法自动检测
   lintOnSave: false,
-  css: {
-    requireModuleExtension: false,
-    loaderOptions: {
-      scss: {
-        prependData: `@import "~@/styles/main/index.scss";`
-      }
-    }
-  },
+  // css: {
+  //   requireModuleExtension: false,
+  //   loaderOptions: {
+  //     scss: {
+  //       prependData: `@import "~@/styles/index.scss";`
+  //     }
+  //   }
+  // },
   // pages: {
   // index: {
   // page 的入口
