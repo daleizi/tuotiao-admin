@@ -9,6 +9,17 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login
+  },
+  {
+    path: "/",
+    component: () => import("@/views/layout"),
+    children: [
+      {
+        path: "", // path为空，会作为默认子路由
+        name: "home",
+        component: () => import("@/views/home")
+      }
+    ]
   }
 ];
 
