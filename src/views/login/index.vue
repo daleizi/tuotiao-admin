@@ -87,11 +87,9 @@ export default {
       this.loading = true;
       login(this.user)
         .then(res => {
-          console.log(res);
+          window.localStorage.setItem("user", JSON.stringify(res.data.data));
           this.loading = false;
-          this.$router.push({
-            name: "home"
-          });
+          this.$router.push("/");
         })
         .catch(err => {
           this.$message.error(err.message);

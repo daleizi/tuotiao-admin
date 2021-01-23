@@ -12,12 +12,9 @@ export const login = data => {
 };
 
 //获取用户个人资料
-export const getUserProfile = token => {
+export const getUserProfile = () => {
   return request({
     method: "GET",
-    url: "/mp/v1_0/user/profile",
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
+    url: "/mp/v1_0/user/profile"
   });
 };

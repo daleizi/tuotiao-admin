@@ -1,6 +1,6 @@
 <template>
   <el-container class="layout-container">
-    <el-aside :style="{ width: isCollapse ? '64px' : '200px' }">
+    <el-aside width="auto">
       <app-aside class="aside-menu" :isCollapse="isCollapse"></app-aside>
     </el-aside>
     <el-container>
@@ -20,13 +20,15 @@
         </div>
         <div class="flex-center">
           <el-avatar :size="28" :src="users.photo" class="mr-5"></el-avatar>
-          <el-dropdown>
+          <el-dropdown @command="handleCommand">
             <span class="el-dropdown-link">
               {{ users.name }}<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item icon="el-icon-plus">设置</el-dropdown-item>
-              <el-dropdown-item icon="el-icon-circle-plus"
+              <el-dropdown-item command="option" icon="el-icon-plus"
+                >设置</el-dropdown-item
+              >
+              <el-dropdown-item command="out" icon="el-icon-circle-plus"
                 >退出</el-dropdown-item
               >
             </el-dropdown-menu>
@@ -61,14 +63,26 @@ export default {
   methods: {
     // 获取用户基本信息
     loadUserProfile() {
-      let token =
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDI2MDA1MzksInVzZXJfaWQiOjEsInJlZnJlc2giOmZhbHNlLCJ2ZXJpZmllZCI6dHJ1ZX0.-RZnOE9NzrKiANbq1I5qKZO_1eqDMxy_twjoFWTQOPU";
-      getUserProfile(token)
+      getUserProfile()
         .then(res => {
           console.log(res);
           this.users = res.data.data;
         })
         .catch(error => console.log(error));
+    },
+    // 退出设置
+    handleCommand(command) {
+      // 退出登录
+      if (command == "out") {
+        this.$confirm("确认是否要退出?", "提示", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning"
+        }).then(() => {
+          window.localStorage.removeItem("user");
+          this.$router.push("/login");
+        });
+      }
     }
   }
 };
@@ -107,5 +121,8 @@ export default {
 }
 .el-main {
   background-color: #f5f5f5;
+}
+.el-dropdown-link {
+  cursor: pointer;
 }
 </style>

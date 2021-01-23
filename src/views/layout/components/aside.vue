@@ -6,6 +6,7 @@
     active-text-color="#ffd04b"
     text-color="#fff"
     router
+    class="el-menu-vertical-demo"
   >
     <h3 class="text-white flex-center">管理</h3>
     <el-menu-item index="/">
@@ -62,5 +63,8 @@ export default {
 .icons {
   width: 24px;
   font-size: 18px;
+}
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
 }
 </style>
