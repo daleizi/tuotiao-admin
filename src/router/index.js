@@ -23,6 +23,31 @@ const routes = [
         path: "/article",
         name: "article", //内容管理
         component: () => import("@/views/article")
+      },
+      {
+        path: "/publish",
+        name: "publish", // 发布文章
+        component: () => import("@/views/publish")
+      },
+      {
+        path: "/image",
+        name: "image", // 发布文章
+        component: () => import("@/views/image")
+      },
+      {
+        path: "/comment",
+        name: "comment", // 评论
+        component: () => import("@/views/comment")
+      },
+      {
+        path: "/settings",
+        name: "settings", // 个人设置
+        component: () => import("@/views/settings")
+      },
+      {
+        path: "/fans",
+        name: "fans", // 粉丝管理
+        component: () => import("@/views/fans")
       }
     ]
   }

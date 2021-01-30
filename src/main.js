@@ -4,10 +4,17 @@ import router from "./router";
 import store from "./store";
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
-import "./styles/index.scss";
+import "./styles/index.css";
 import request from "./utils/request";
+
+import { ElementTiptapPlugin } from "element-tiptap";
+import "element-tiptap/lib/index.css";
 Vue.prototype.request = request;
 Vue.config.productionTip = false;
+Vue.use(ElementTiptapPlugin, {
+  lang: "zh"
+  // spellcheck: false,
+});
 Vue.use(ElementUI);
 new Vue({
   router,

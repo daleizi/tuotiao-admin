@@ -1,6 +1,6 @@
 <template>
   <el-menu
-    default-active="/"
+    default-active="$route.path"
     :collapse="isCollapse"
     background-color="#2f3447"
     active-text-color="#ffd04b"

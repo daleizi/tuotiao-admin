@@ -55,7 +55,8 @@
               start-placeholder="开始日期"
               end-placeholder="结束日期"
               clearable
-              value-format="yyyy-MM-DD"
+              :default-time="['12:00:00']"
+              value-format="yyyy-MM-dd"
             >
             </el-date-picker>
           </el-form-item>
@@ -105,9 +106,7 @@
             </el-table-column>
             <el-table-column label="操作" width="180">
               <template slot-scope="scope">
-                <el-button
-                  size="mini"
-                  @click="handleEdit(scope.$index, scope.row)"
+                <el-button size="mini" @click="handleEdit(scope.row.id)"
                   >编辑</el-button
                 >
                 <el-button
@@ -181,9 +180,11 @@ export default {
         begin_pubdate: this.rangeDate ? this.rangeDate[0] : null, // 起始时间
         end_pubdate: this.rangeDate ? this.rangeDate[1] : null //  截止时间
       };
+      console.log(params);
       this.loading = true;
       getArticles(params)
         .then(res => {
+          console.log(res.data);
           this.tableData = res.data.data.results;
           this.total = res.data.data.total_count;
           this.loading = false;
@@ -193,8 +194,8 @@ export default {
           this.loading = false;
         });
     },
+    // 每页显示多少条数据
     handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
       this.params.per_page = val;
     },
     // 当前页第几页
@@ -205,7 +206,6 @@ export default {
     // 获取文章频道
     getChannelsList() {
       getChannels().then(res => {
-        console.log(res);
         this.channels = res.data.data.channels;
       });
     },
@@ -225,6 +225,10 @@ export default {
           }
         });
       });
+    },
+    // 编辑
+    handleEdit(id) {
+      this.$router.push({ name: "publish", query: { id } });
     }
   }
 };

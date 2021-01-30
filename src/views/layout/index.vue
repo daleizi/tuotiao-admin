@@ -65,7 +65,6 @@ export default {
     loadUserProfile() {
       getUserProfile()
         .then(res => {
-          console.log(res);
           this.users = res.data.data;
         })
         .catch(error => console.log(error));
